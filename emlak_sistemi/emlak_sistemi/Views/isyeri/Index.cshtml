@@ -1,0 +1,58 @@
+﻿@model IEnumerable<emlak_sistemi.Models.Model.isyeri>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>İşyeri Bilgi Ekranı</h2>
+
+<p>
+    @Html.ActionLink("Yeni Kayıt", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.IsletmeAdi)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Yetkili)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Adres)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Telefon)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Fax)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.IsletmeAdi)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Yetkili)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Adres)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Telefon)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Fax)
+        </td>
+        <td>
+            @Html.ActionLink("Düzenle", "Edit", new { id=item.IsyeriId }) |
+          
+            @Html.ActionLink("Sİl", "Delete", new { id=item.IsyeriId })
+        </td>
+    </tr>
+}
+
+</table>

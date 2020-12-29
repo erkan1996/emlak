@@ -1,0 +1,59 @@
+﻿@model IEnumerable<emlak_sistemi.Models.Model.musteri>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Müşteri Kayıt</h2>
+
+<p>
+    @Html.ActionLink("Yeni Kayıt", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Ad)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Soyad)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EvTelefonu)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CepNo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Mail)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Ad)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Soyad)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EvTelefonu)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CepNo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Mail)
+        </td>
+		<td>
+			@Html.ActionLink("Düzenle", "Edit", new { id = item.MusteriId }) |
+
+			@Html.ActionLink("Sil", "Delete", new { id = item.MusteriId }) |
+			<a href="/ara/index">Uygun Ev Bul</a>
+		</td>
+    </tr>
+}
+
+</table>

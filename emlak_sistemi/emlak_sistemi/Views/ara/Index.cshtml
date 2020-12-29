@@ -1,0 +1,162 @@
+﻿@model IEnumerable<emlak_sistemi.Models.Model.evbilgi>
+
+@{
+	ViewBag.Title = "Index";
+	Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Ev Ara</h2>
+
+
+
+@using (Html.BeginForm("Index", "ara", FormMethod.Get))
+{
+	
+	<div class="col-lg-12">
+		<section class="panel">
+			<header class="panel-heading">
+				Arama Kriterleri
+			</header>
+			<div class="panel-body">
+				<div class="form">
+					<form class="form-validate form-horizontal" id="feedback_form" method="get" action="">
+						<div class="form-group ">
+							<label for="cname" class="control-label col-lg-2">Isı Türü <span class="required">*</span></label>
+							<div class="col-lg-10">
+								@Html.TextBox("p", null, new { @class = "form-control" })
+
+							</div>
+						</div>
+						<div class="form-group ">
+							<label for="cname" class="control-label col-lg-2">Ev Türü <span class="required">*</span></label>
+							<div class="col-lg-10">
+								@Html.TextBox("c", null, new { @class = "form-control" })
+							</div>
+						</div>
+						<div class="form-group ">
+							<label for="cname" class="control-label col-lg-2">Oda Sayısı <span class="required">*</span></label>
+							<div class="col-lg-10">
+								@Html.TextBox("say", null, new { @class = "form-control" })
+							</div>
+						</div>
+						<div class="form-group ">
+							<label for="cname" class="control-label col-lg-2">m² <span class="required">*</span></label>
+							<div class="col-lg-10">
+								@Html.TextBox("m", null, new { @class = "form-control" })
+							</div>
+						</div>
+						<div class="form-group ">
+							<label for="cname" class="control-label col-lg-2">Kat <span class="required">*</span></label>
+							<div class="col-lg-10">
+								@Html.TextBox("k", null, new { @class = "form-control" })
+							</div>
+						</div>
+
+						
+						<button type="submit" class="btn btn-primary">Ara</button>&nbsp&nbsp<button type="reset" value="Temizle" class="btn btn-primary">Temizle</button>
+						<href="#" onclick="PrintFunction('#printdiv')" target="_blank"class="btn btn-primary">Yazdır</href>
+					</form>
+				</div>
+
+			</div>
+		</section>
+	</div>
+
+}
+<div id="printdiv">
+	<table class="table">
+		<tr>
+			<th>
+				@Html.DisplayNameFor(model => model.Tur)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => model.MetreKare)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => model.OdaSayisi)
+			</th>
+
+			<th>
+				@Html.DisplayNameFor(model => model.Kat)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => model.IsiTuru)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => model.Aciklama)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => model.Ad)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => model.Soyad)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => model.Telefon)
+			</th>
+			<th></th>
+		</tr>
+
+		@foreach (var item in Model)
+		{
+			<tr>
+				<td>
+					@Html.DisplayFor(modelItem => item.Tur)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.MetreKare)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.OdaSayisi)
+				</td>
+
+				<td>
+					@Html.DisplayFor(modelItem => item.Kat)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.IsiTuru)
+				</td>
+				<td>
+					@Html.Raw(item.Aciklama)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.Ad)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.Soyad)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.Telefon)
+				</td>
+
+			</tr>
+		}
+
+	</table>
+</div>
+
+
+<script>
+	$(dacument).ready(function () {
+		document.getElementById("printdiv").style.visibility = "visible";
+	});
+	function PrintFunction(div) {
+		document.getElementById("printdiv").style.visibility = "visible";
+		Popup($(div).html());
+
+	}
+	function Popup(data) {
+		var printwindow = window.open('', 'printdiv');
+		printwindow.document.write('<html><head><title></title>');
+		printwindow.document.write('</head><body>');
+		printwindow.document.write(data);
+		printwindow.document.write('</body></html>');
+	    printwindow.document.close();
+		
+		printwindow.focus();
+		printwindow.print();
+		printwindow.close();
+		
+	}
+
+</script>
